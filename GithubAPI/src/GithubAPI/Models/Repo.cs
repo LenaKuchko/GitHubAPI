@@ -12,13 +12,13 @@ namespace GithubAPI.Models
     public class Repo
     {
         public string Name { get; set; }
-        public string Url { get; set; }
+        public string Html_Url { get; set; }
         public int Stargazers_Count { get; set; }
 
         public static List<Repo> GetStarredRepoes()
         {
             var client = new RestClient("https://api.github.com");
-            var request = new RestRequest("/search/repositories?q=user:LenaKuchko&sort=stars", Method.GET);
+            var request = new RestRequest("/search/repositories?q=user:LenaKuchko&&per_page=3&sort=stars", Method.GET);
 
             client.Authenticator = new HttpBasicAuthenticator(EnvironmentVariables.UserName, EnvironmentVariables.Token);
             request.AddHeader("User-Agent", "GithubAPI");
